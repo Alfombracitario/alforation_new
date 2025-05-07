@@ -1,0 +1,10 @@
+image_xscale = (room_width*0.05)-1.6;
+image_yscale = 3;
+locked = 0;
+Bid = 1;
+mode = 0;
+bc = 0;
+selected_button = -1;
+selected = -1;
+state = false;
+_state = -1;

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"collide_and_move_between_blocks",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"collide_and_move_between_blocks",
+  "parent":{
+    "name":"3D",
+    "path":"folders/Scripts/3D.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
