@@ -436,25 +436,23 @@ if (room == dungeon || room == cave) {
     x += _xmove;
     y += _ymove;
 } else {
-	var _xspd = 0;
-	var _yspd = 0;
-    _xspd += lengthdir_x(f_sp, ((360 - cam_yaw) + 360) mod 360);
-    _yspd += lengthdir_y(f_sp, ((360 - cam_yaw) + 360) mod 360);
-    _xspd += lengthdir_x(s_sp, ((360 - cam_yaw + 90) + 360) mod 360);
-    _yspd += lengthdir_y(s_sp, ((360 - cam_yaw + 90) + 360) mod 360);
+    var _xmove = lengthdir_x(f_sp, ((360 - cam_yaw) + 360) mod 360);
+    var _ymove = lengthdir_y(f_sp, ((360 - cam_yaw) + 360) mod 360);
 	
 	//esto es muy lento y horrible
 	var inst = instance_position(x, y, objChunk);
 var _cblocks = (inst != noone && variable_instance_exists(inst, "blocks")) ? inst.blocks : _empty_blocks;
-var _block_array = [0,0,0, 0,0,0, 0,0,0];
+var _block_array = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]
+];
 var _x = rcx >> 0; // Coordenada X del bloque actual dentro del chunk
 var _y = rcy >> 0; // Coordenada Y del bloque actual dentro del chunk
 var _z = 0; // Temporal (solo Z=0 por ahora)
 
-var _r = -1;
 for (var j = -1; j < 2; j++) {
     for (var i = -1; i < 2; i++) {
-        _r++;
         
         // Calcular posición del bloque a verificar
         var local_x = _x + i;
@@ -481,7 +479,8 @@ for (var j = -1; j < 2; j++) {
         }
         
         // Actualizar array de colisiones
-        _block_array[_r] = (_block != 0) ? 1 : 0;
+        _block_array[i+1][j+1] = (_block != 0) ? 1 : 0;
+
     }
 }
 
@@ -489,10 +488,9 @@ for (var j = -1; j < 2; j++) {
 var _x_rel = (x mod 16) / 16;
 var _y_rel = (y mod 16) / 16;
 
-show_debug_message("["+string(_block_array[0])+string(_block_array[1])+string(_block_array[2]));
-show_debug_message(" "+string(_block_array[3])+string(_block_array[4])+string(_block_array[5]));
-show_debug_message(" "+string(_block_array[6])+string(_block_array[7])+string(_block_array[8])+"]");
-collide_and_move_between_blocks(_block_array, _x_rel, _y_rel, _xspd, _yspd);
+show_debug_message(_block_array);
+
+collide_and_move_between_blocks(_block_array, _x_rel, _y_rel, _xmove, _ymove);
 
 }
 // Obtener posición relativa dentro del bloque (0-1)
