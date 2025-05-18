@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"collide_and_move_between_blocks",
   "parent":{
-    "name":"3D",
-    "path":"folders/Scripts/3D.yy",
+    "name":"movement",
+    "path":"folders/Scripts/3D/movement.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -4,9 +4,11 @@ attribute vec2 in_TextureCoord;
 
 uniform vec2 _t; //x = s, y = c
 uniform vec2 fog_settings; // x = near, y = far
+uniform vec3 fog_color;
 
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
+varying float v_fogFactor;
 
 void main() {
     float a = -floor((in_Colour.a - 0.5) * 255.0);
@@ -20,9 +22,9 @@ void main() {
     gl_Position = gm_Matrices[MATRIX_PROJECTION] * view_pos;
 
     //fog
-    float fog_factor = clamp((view_pos.z - fog_settings.x) / (fog_settings.y - fog_settings.x), 0.0, 1.0);
-    float final_alpha = 1.0 - fog_factor;
+    v_fogFactor = clamp((view_pos.z - fog_settings.x) / (fog_settings.y - fog_settings.x), 0.0, 1.0);
 
-    v_vColour = vec4(in_Colour.rgb, final_alpha);
+	v_vColour = vec4(in_Colour.rgb, 1.0);
+
     v_vTexcoord = in_TextureCoord;
 }

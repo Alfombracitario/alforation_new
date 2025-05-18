@@ -382,8 +382,6 @@ if(_smove != 0) {
     s_sp -= _s * 0.1;
     if(_s != sign(s_sp)) s_sp = 0;
 }
-
-
 if (room == dungeon || room == cave) {
 	
 	var hitbox = 7; // Distancia desde el centro del jugador
@@ -435,12 +433,12 @@ if (room == dungeon || room == cave) {
     
     x += _xmove;
     y += _ymove;
-} else {
-    var _xmove = lengthdir_x(f_sp, ((360 - cam_yaw) + 360) mod 360);
-    var _ymove = lengthdir_y(f_sp, ((360 - cam_yaw) + 360) mod 360);
-	
+}
+else {
+
 	//esto es muy lento y horrible
-	var inst = instance_position(x, y, objChunk);
+	
+var inst = instance_position(x, y, objChunk);
 var _cblocks = (inst != noone && variable_instance_exists(inst, "blocks")) ? inst.blocks : _empty_blocks;
 var _block_array = [
     [0, 0, 0],
@@ -483,17 +481,54 @@ for (var j = -1; j < 2; j++) {
 
     }
 }
-
+_xmove = lengthdir_x(f_sp, ((360 - cam_yaw) + 360) mod 360);
+_ymove = lengthdir_y(f_sp, ((360 - cam_yaw) + 360) mod 360);
+_xmove += lengthdir_x(s_sp, ((360 - cam_yaw + 90) + 360) mod 360);
+_ymove += lengthdir_y(s_sp, ((360 - cam_yaw + 90) + 360) mod 360);
+/*
 // Calcular posición relativa dentro del bloque (para colisiones precisas)
-var _x_rel = (x mod 16) / 16;
-var _y_rel = (y mod 16) / 16;
+var x_rel = (x mod 16) / 16;
+var y_rel = (y mod 16) / 16;
 
-show_debug_message(_block_array);
+var hitbox = 7/16;
 
-collide_and_move_between_blocks(_block_array, _x_rel, _y_rel, _xmove, _ymove);
+var xnext = (x_rel+_xmove/16);
+var ynext = (y_rel+_ymove/16);
 
+//revisar si en la próxima posición hay un bloque
+if(_block_array[1+xnext>>0][1])//si hay un bloque, retroceder
+{
+	f_sp*=0;
+	s_sp*=0;
 }
-// Obtener posición relativa dentro del bloque (0-1)
+else//o si no revisamos también en Y
+{
+	if(_block_array[1+xnext>>0][1+ynext>>0])//colisión en la diagonal
+	{
+		f_sp*=0;
+		s_sp*=0;
+	}
+	else//ninguna colisión en el eje X, avanza todo
+	{
+		x+=_xmove;
+	}
+}
+//por último, revisamos si podemos mover en el eje Y
+if(_block_array[1][1+ynext>>0])
+{
+	f_sp*=0;
+	s_sp*=0;
+}
+else//no hay nada en el eje Y, avanza todo
+{
+	y+=_ymove;
+}
+
+*/
+
+collide_and_move_between_blocks(_xmove,_ymove,7,_block_array)
+show_debug_message(_block_array);
+}
 
 
 

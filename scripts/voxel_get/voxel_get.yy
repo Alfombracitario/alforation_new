@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"voxel_get",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"voxel_get",
+  "parent":{
+    "name":"movement",
+    "path":"folders/Scripts/3D/movement.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

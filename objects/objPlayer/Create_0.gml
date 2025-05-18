@@ -1,6 +1,7 @@
 draw_set_halign(fa_left);
 _t  = shader_get_uniform(sBillboard, "_t");
 fog_settings  = shader_get_uniform(sBillboard, "fog_settings");
+fogcol = shader_get_uniform(sBillboard,"fog_color");
 factordiv = 1;
 global.players = 1;
 
@@ -84,6 +85,9 @@ added_item = 0;
 added_tic = 0;
 added_count = 0;
 camz = 0;
+vx = 0;
+vy = 0;
+vz = 0;
 depth = 1;
 f_sp = 0;
 s_sp = 0;
@@ -108,7 +112,7 @@ timecolor = c_white;
 fog_color = $FF9865;
 sky_color = fog_color;
 fog_depth = (global.render_distance+0.5)*CHUNK_SIZE;
-fog_density = CHUNK_SIZE;
+fog_density = global.render_distance<<7;
 //variables de input
 Pdpad_u = 0;
 Pdpad_d = 0;
@@ -396,7 +400,7 @@ for(var i = 0; i<16; i++)
 	drops[T_DEAD_BUSH]		= [I_STICK,0.6,0];
 	drops[T_CACTUS]			= [I_WOOD,0.2,0];
 	drops[T_MUSHROOM3]		= [I_MUSHROOM3,1,0];
-	drops[T_GRASS2]			= [0,0];
+	drops[T_GRASS2]			= [0,0,0];
 	drops[T_STONE_COAL]		= [I_COAL,1,2];
 	drops[T_STONE_TIN]		= [I_STONE_TIN,1,3];
 	drops[T_STONE_COPPER]	= [I_STONE_COPPER,1,5];

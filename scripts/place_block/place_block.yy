@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"place_block",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"place_block",
+  "parent":{
+    "name":"3D",
+    "path":"folders/Scripts/3D.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

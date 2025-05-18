@@ -1,51 +1,52 @@
-function collide_and_move_between_blocks(tile_array, _x, _y, _xmove, _ymove) {
-    var hitbox = 7;
 
-    var _tile_x = (_x + _xmove + sign(_xmove) * hitbox)>>4;
-    var _tile_y = (_y / 16)<<0;
-    if (tile_array[1+_tile_x][1+_tile_y] == 1) {
-        while (tile_array[1+(_x + sign(_xmove) * 0.05 + sign(_xmove) * hitbox)>>4][1+_tile_y] != 1) {
-            _y += sign(_xmove) * 0.05;
-			_x += sign(_xmove) * 0.05;
+/// @func move_with_collision(hspd, vspd, hitbox_px, tile_array)
+/// @arg hspd         Horizontal speed en píxeles/frame
+/// @arg vspd         Vertical speed en píxeles/frame
+/// @arg hitbox_px    Mitad de la hitbox cuadrada en píxeles (p.ej. 7)
+/// @arg tile_array   Array 3×3 de booleans (1=bloque, 0=vacío)
+function collide_and_move_between_blocks(_hspd,_vspd,_hitbox_px,_tile_array) {
+    // 1) Delta en tiles
+    var dx = _hspd/16, dy = _vspd/16;
+    var half = _hitbox_px/16;
+    var xr = x/16, yr = y/16;
+
+    // 2) Prueba X
+    var collidedX = false;
+    if (dx != 0) {
+        var nx1 = xr + dx - half, nx2 = xr + dx + half;
+        var ny1 = yr - half,      ny2 = yr + half;
+        var tminX = floor(nx1),   tmaxX = floor(nx2);
+        var tminY = floor(ny1),   tmaxY = floor(ny2);
+
+        for (var tx = tminX; tx <= tmaxX && !collidedX; tx++) {
+            for (var ty = tminY; ty <= tmaxY; ty++) {
+                var ox = clamp(tx   - floor(xr), -1, 1) + 1;
+                var oy = clamp(ty   - floor(yr), -1, 1) + 1;
+                if (_tile_array[ox][oy]) { collidedX = true; break; }
+            }
         }
-        _xmove = 0;
+        if (collidedX) dx = 0;
     }
-	_tile_x = (_x / 16)<<0;
-    _tile_y = ((_y + _ymove + sign(_ymove) * hitbox) / 16)<<0;
-    if (tile_array[1+_tile_x][1+_tile_y] == 1) {
-        while (tile_array[1+_tile_x][1+(_y + sign(_ymove) * 0.05 + sign(_ymove) * hitbox)>>4] != 1) {
-            y += sign(_ymove) * 0.05;
-			_y += sign(_ymove) * 0.05;
+
+    // 3) Prueba Y
+    var collidedY = false;
+    if (dy != 0) {
+        var nx1 = xr - half,      nx2 = xr + half;
+        var ny1 = yr + dy - half, ny2 = yr + dy + half;
+        var tminX = floor(nx1),   tmaxX = floor(nx2);
+        var tminY = floor(ny1),   tmaxY = floor(ny2);
+
+        for (var tx = tminX; tx <= tmaxX && !collidedY; tx++) {
+            for (var ty = tminY; ty <= tmaxY; ty++) {
+                var ox = clamp(tx   - floor(xr), -1, 1) + 1;
+                var oy = clamp(ty   - floor(yr), -1, 1) + 1;
+                if (_tile_array[ox][oy]) { collidedY = true; break; }
+            }
         }
-        _ymove = 0;
+        if (collidedY) dy = 0;
     }
-    
-    x += _xmove;
-    y += _ymove;
-    
-    _xmove = lengthdir_x(s_sp, ((360 - cam_yaw + 90) + 360) mod 360);
-    _ymove = lengthdir_y(s_sp, ((360 - cam_yaw + 90) + 360) mod 360);
-    
-    _tile_x = floor((_x + _xmove + sign(_xmove) * hitbox) / 16);
-    _tile_y = _y>>4;
-    if (tile_array[1+_tile_x][1+_tile_y] == 1) {
-        while (tile_array[1+floor((_x + sign(_xmove) * 0.02 + sign(_xmove) * hitbox) / 16)][1+_tile_y] != 1) {
-            _x += sign(_xmove) * 0.02;
-			x += sign(_xmove) * 0.02;
-        }
-        _xmove = 0;
-    }
-    
-    _tile_x = _x>>4;
-    _tile_y = floor((_y + _ymove + sign(_ymove) * hitbox) / 16);
-    if (tile_array[1+_tile_x][1+_tile_y] == 1) {
-        while (tile_array[1+_tile_x][1+floor((_y + sign(_ymove) * 0.02 + sign(_ymove) * hitbox) / 16)] != 1) {
-            _y += sign(_ymove) * 0.02;
-			y += sign(_ymove) * 0.02;
-        }
-        _ymove = 0;
-    }
-    
-    x += _xmove;
-    y += _ymove;
+
+    // 4) Aplicar movimiento (vuelve a píxeles)
+    x += dx * 16;
+    y += dy * 16;
 }

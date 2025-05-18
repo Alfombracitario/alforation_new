@@ -148,7 +148,9 @@ for(var i = 0; i<hotbarsize;i++)
 if(invopen)
 {
 	//crafteo
-	draw_sprite_ext(sprContainer,0,craftx-5,crafty-16,11,9,0,c_white,1);
+	var _crftc = array_length(craftable)//dibujar las cosas que se pueden craftear
+	var craftys = 4.8+(((5+_crftc) div 6)*1.6);
+	draw_sprite_ext(sprContainer,0,craftx-5,crafty-16,11,craftys,0,c_white,1);
 	draw_sprite_ext(sprSlot,0,craftx,crafty,3,1,0,c_white,1);
     
 	for(var i = 0; i<3; i++)//dibujar los items del crafting grid
@@ -169,7 +171,6 @@ if(invopen)
 		draw_sprite(sprArrowright,0,craftx+52,crafty);
 	}
 	
-	var _crftc = array_length(craftable)//dibujar las cosas que se pueden craftear
 	for(var i = 0; i<_crftc; i++)
 	{
 		var limiti = 6;

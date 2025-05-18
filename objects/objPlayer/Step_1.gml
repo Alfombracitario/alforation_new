@@ -1,3 +1,21 @@
+//TEMPORAL
+if(keyboard_check_pressed(vk_up))
+{
+	y-=16;
+}
+if(keyboard_check_pressed(vk_right))
+{
+	x+=16;
+}
+if(keyboard_check_pressed(vk_left))
+{
+	x-=16;
+}
+if(keyboard_check_pressed(vk_down))
+{
+	y+=16;
+}
+
 w_width = window_get_width();
 w_height = window_get_height();
 gw = display_get_gui_width();
@@ -176,8 +194,7 @@ if (room == game)
     {
         fog_color = $120406;
         timecolor = $7a6a6a;
-		sky_color = $000000;
-		if fog_density < fog_depth<<1 fog_density+=17;
+		sky_color = $000000
 
         if (irandom(500) == 0)
         {
@@ -205,16 +222,12 @@ if (room == game)
 //biomas especiales
 if(ExtTemperature > 215 && humidity > 215)//Jungla
 {
-	if(fog_density < fog_depth) fog_density+=16;
 	fog_color += $002000;
 }
 else if(ExtTemperature < 40 && humidity > 180)//corrupción
 {
-	if(fog_density < fog_depth) fog_density+=16;
 	sky_color += $000030;
 }
-else
-{
-	if(fog_density > CHUNK_SIZE) fog_density-=16;	
-}
 if cooldown > 0 cooldown -= global.fpsmode;
+
+fog_density = fog_depth*0.75;
