@@ -148,44 +148,49 @@ for(var i = 0; i<hotbarsize;i++)
 if(invopen)
 {
 	//crafteo
-	var _crftc = array_length(craftable)//dibujar las cosas que se pueden craftear
-	var craftys = 4.8+(((5+_crftc) div 6)*1.6);
-	draw_sprite_ext(sprContainer,0,craftx-5,crafty-16,11,craftys,0,c_white,1);
-	draw_sprite_ext(sprSlot,0,craftx,crafty,3,1,0,c_white,1);
+	if(invmode = 0)
+	{
+		var _crftc = array_length(craftable)//dibujar las cosas que se pueden craftear
+		var craftys = 4.8+(((5+_crftc) div 6)*1.6);
+		draw_sprite_ext(sprContainer,0,craftx-5,crafty-16,11,craftys,0,c_white,1);
+		draw_sprite_ext(sprSlot,0,craftx,crafty,3,1,0,c_white,1);
     
-	for(var i = 0; i<3; i++)//dibujar los items del crafting grid
-	{
-        draw_item_sprite(craftx+(i<<4),crafty,crafting_grid[i][0],crafting_grid[i][1]);
-	}
-	//Cuantos items se están crafteando
-	var craftp80 = craftx+80
-	draw_sprite(sprSlot,0,craftp80,crafty);
-	if(craftresult[4] > 0)
-	{
-		draw_sprite(sprArrowright,1,craftx+52,crafty);
-		draw_sprite(sprItems,craftresult[0],craftp80,crafty);
-		draw_text_shadow(craftp80,crafty+8,craftresult[2]*craftresult[4]);
-	}
-	else
-	{
-		draw_sprite(sprArrowright,0,craftx+52,crafty);
-	}
+		for(var i = 0; i<3; i++)//dibujar los items del crafting grid
+		{
+	        draw_item_sprite(craftx+(i<<4),crafty,crafting_grid[i][0],crafting_grid[i][1]);
+		}
+		//Cuantos items se están crafteando
+		var craftp80 = craftx+80
+		draw_sprite(sprSlot,0,craftp80,crafty);
+		if(craftresult[4] > 0)
+		{
+			draw_sprite(sprArrowright,1,craftx+52,crafty);
+			draw_sprite(sprItems,craftresult[0],craftp80,crafty);
+			draw_text_shadow(craftp80,crafty+8,craftresult[2]*craftresult[4]);
+		}
+		else
+		{
+			draw_sprite(sprArrowright,0,craftx+52,crafty);
+		}
 	
-	for(var i = 0; i<_crftc; i++)
-	{
-		var limiti = 6;
-		var _i = i mod limiti;
-		var _x = craftx+(_i<<4);
-		var _y = crafty+24+((i div limiti)<<4);
+		for(var i = 0; i<_crftc; i++)
+		{
+			var limiti = 6;
+			var _i = i mod limiti;
+			var _x = craftx+(_i<<4);
+			var _y = crafty+24+((i div limiti)<<4);
 		
-        draw_sprite(sprSlot,0,_x,_y);
-		draw_sprite(sprItems,craftable[i][0],_x,_y);
-        draw_text_shadow(_x,_y+8,craftable[i][1]);
+	        draw_sprite(sprSlot,0,_x,_y);
+			draw_sprite(sprItems,craftable[i][0],_x,_y);
+	        draw_text_shadow(_x,_y+8,craftable[i][1]);
+		}
+		draw_text_shadow(craftx,crafty-10,"Crafting");
 	}
-	draw_text_shadow(craftx,crafty-10,"Crafting");
-	
-	
-	
+	else if(invmode = 1)
+	{
+		draw_sprite_ext(sprContainer,0,craftx-5,crafty-16,11,6,0,c_white,1);
+		draw_text_shadow(craftx,crafty-10,"Stats");
+	}
 	//inventario
 	draw_sprite_ext(sprContainer,0,invx-5,invy-16,17,9,0,c_white,1); //contorno
 	draw_sprite_ext(sprSlot,0,invx,invy,10,4,0,c_white,1);

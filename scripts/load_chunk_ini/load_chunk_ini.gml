@@ -332,26 +332,36 @@ function load_chunk_ini(cx, cy) {
 					set_tree(sprOaktree);
 				}
 			
-					var file_size = ini_read_real(key,"r",0);
-				
-					objectcount = file_size;
-					
-					for(var i = 0; i < file_size; i++)
-					{
-					
-						var valuetoread = ini_read_string(key,i,0);
-				
-						var hex_digit = 0;
-				
-						hex_digit[0] = string_char_at(valuetoread, 2);
-						hex_digit[1] = string_char_at(valuetoread, 3);
-						valuetoread = string_char_at(valuetoread, 1);
-						valuetoread = real(valuetoread);
+var file_size = ini_read_real(key, "r", 0);
+objectcount = file_size;
 
-						objects[i][0] = valuetoread; //objeto
-						objects[i][1] = x+(hex_to_dec_one(hex_digit[0])<<4); //X pos
-						objects[i][2] = y+(hex_to_dec_one(hex_digit[1])<<4); //Y pos
-					}
+for (var i = 0; i < file_size; i++) {
+    var valuetoread = ini_read_string(key, i, "0");
+    var len = string_length(valuetoread);
+    
+    var obj_id;
+    var hex_digit_x;
+    var hex_digit_y;
+
+    if (len == 3) {
+        obj_id = real(string_char_at(valuetoread, 1));
+        hex_digit_x = string_char_at(valuetoread, 2);
+        hex_digit_y = string_char_at(valuetoread, 3);
+    } else if (len == 4) {
+        obj_id = real(string_copy(valuetoread, 1, 2));
+        hex_digit_x = string_char_at(valuetoread, 3);
+        hex_digit_y = string_char_at(valuetoread, 4);
+    } else {
+        // Manejo de errores (opcional)
+        show_debug_message("Formato inválido" + string(valuetoread));
+        continue;
+    }
+
+    objects[i][0] = obj_id;
+    objects[i][1] = x + (hex_to_dec_one(hex_digit_x) << 4); // X pos
+    objects[i][2] = y + (hex_to_dec_one(hex_digit_y) << 4); // Y pos
+}
+
 			}
 		}
 		#endregion

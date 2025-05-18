@@ -182,6 +182,7 @@ level = ini_read_real("p","lv",1);
 xp_need = floor(25 * level * power(1.1, level));
 //inventario
 invsize = 40;
+invmode = 0
 var invdata = 3;
 for (var i = 0; i < invsize; i++) {
     for (var j = 0; j < invdata; j++) {

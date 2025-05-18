@@ -32,16 +32,19 @@ if(invopen == true)
 		if Pface_y hotbar[hotbarsel] = selecteditem;
 		invmousex += gamepad_axis_value(0, gp_axislh)*4*global.fpsmode;
 		invmousey += gamepad_axis_value(0, gp_axislv)*4*global.fpsmode;
+		if gamepad_button_check_pressed(0,gp_select) inventory_sort();
 	}
 	else
 	{
 		if(os_type == os_windows || os_type == os_macosx || os_type == os_operagx)
 		{
 
-			if(keyboard_check_pressed(ord("E")) || keyboard_check_pressed(vk_escape))
+			if(keyboard_check_pressed(ord("E")) && invmode == 0 || keyboard_check_pressed(ord("F")) && invmode == 1 || keyboard_check_pressed(vk_escape))
 			{ 
 				close_inv();
 			}
+			else if(keyboard_check_pressed(ord("E")) && invmode != 0) invmode = 0;
+			else if(keyboard_check_pressed(ord("F")) && invmode != 1) invmode = 1;
 			if mouse_wheel_down() && hotbarsel < invsize { hotbarsel++; audio_play_sound(sndSelect,0,0,global.sndvol);}
 			selecteditem = selecteditem mod invsize
 			hotbarsel = hotbarsel mod hotbarsize;
@@ -61,9 +64,6 @@ if(invopen == true)
 			if keyboard_check_pressed(ord("S")) && selecteditem < invsize-10 { selecteditem += 10; audio_play_sound(sndSelect,0,0,global.sndvol); }
 			if keyboard_check_pressed(ord("D")) && selecteditem < invsize-1 { selecteditem++; audio_play_sound(sndSelect,0,0,global.sndvol); }
 			if keyboard_check_pressed(ord("A")) && selecteditem > 0  { selecteditem--; audio_play_sound(sndSelect,0,0,global.sndvol); }
-			if keyboard_check_pressed(ord("Z")) item_to_crafting(0,2);
-			if keyboard_check_pressed(ord("X")) item_to_crafting(1,2);
-			if keyboard_check_pressed(ord("C")) item_to_crafting(2,2);
 			if keyboard_check_pressed(ord("V")) inventory_sort();
 			
 			if(prevmousex != device_mouse_x_to_gui(0) && prevmousex != device_mouse_y_to_gui(0))
@@ -197,6 +197,12 @@ if(os_type == os_windows || os_type == os_macosx || os_type == os_operagx)
 	_smove = keyboard_check(ord("A")) - keyboard_check(ord("D"));
 	if keyboard_check_pressed(ord("E"))
 	{ 
+		invmode = 0;
+		open_inv();
+	}
+	if keyboard_check_pressed(ord("F"))
+	{ 
+		invmode = 1;
 		open_inv();
 	}
 	
@@ -577,7 +583,7 @@ if(global.shadows)
 	zto = z;
 	var mat = matrix_build_lookat(xfrom, yfrom, _z, xto, yto, zto, 0, 0, 1);
 }
-var mat = matrix_build_lookat(xfrom, yfrom, z+_z, xto, yto, z+_z + zto, 0, 0, 1);
+var mat = matrix_build_lookat(xfrom, yfrom,z+_z, xto, yto,z+_z + zto, 0, 0, 1);
 camera_set_view_mat(view_camera[0], mat);
 #endregion
 
