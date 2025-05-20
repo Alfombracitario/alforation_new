@@ -1,9 +1,3 @@
-//preparamos para dibujo 2D
-shader_reset();
-gpu_set_ztestenable(false);
-
-//gpu_set_fog(false,0,0,0);
-
 //dibujar la pantalla
 if(global.hd)
 {
@@ -150,11 +144,14 @@ if(invopen)
 	//crafteo
 	if(invmode = 0)
 	{
-		var _crftc = array_length(craftable)//dibujar las cosas que se pueden craftear
-		var craftys = 4.8+(((5+_crftc) div 6)*1.6);
+		var _crftc = array_length(craftable)
+		var _itemsperow = 6;
+		var craftys = 4.8+(((5+_crftc) div _itemsperow)*1.6);
+		
 		draw_sprite_ext(sprContainer,0,craftx-5,crafty-16,11,craftys,0,c_white,1);
 		draw_sprite_ext(sprSlot,0,craftx,crafty,3,1,0,c_white,1);
-    
+		
+		
 		for(var i = 0; i<3; i++)//dibujar los items del crafting grid
 		{
 	        draw_item_sprite(craftx+(i<<4),crafty,crafting_grid[i][0],crafting_grid[i][1]);
@@ -186,15 +183,30 @@ if(invopen)
 		}
 		draw_text_shadow(craftx,crafty-10,"Crafting");
 	}
-	else if(invmode = 1)
+	else if(invmode = 1)//info del personaje
 	{
 		draw_sprite_ext(sprContainer,0,craftx-5,crafty-16,11,6,0,c_white,1);
-		draw_text_shadow(craftx,crafty-10,"Stats");
+		draw_text_shadow(craftx,crafty-12,"Character");
+		draw_sprite_ext(sprSlot,0,craftx,crafty,4,2,0,c_white,1);
+		
+		for(var i = 0; i < 4; i++)
+		{
+			draw_sprite_ext(sprItems,55+i,craftx+(i<<4),crafty,1,1,0,c_white,0.5);
+		}
+		draw_text_shadow(craftx+64,crafty,"Def: "+"0");
+		draw_text_shadow(craftx+64,crafty-12,"SP: "+string(level))
 	}
+	
+	
 	//inventario
 	draw_sprite_ext(sprContainer,0,invx-5,invy-16,17,9,0,c_white,1); //contorno
 	draw_sprite_ext(sprSlot,0,invx,invy,10,4,0,c_white,1);
 	draw_text_shadow(invx,invy-10,"inventory");
+	
+	//botones y otras cosas
+	draw_sprite(sprInvicon,0,invx+149,invy-13);
+	draw_sprite(sprInvicon,1,invx+136,invy-13);
+	draw_sprite(sprInvicon,2,invx+123,invy-13);
 	
 	var rows = invsize*0.1;
 	draw_sprite(sprInvselected,0

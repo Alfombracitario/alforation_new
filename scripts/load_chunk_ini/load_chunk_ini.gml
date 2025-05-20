@@ -278,6 +278,7 @@ function load_chunk_ini(cx, cy) {
 				if(temperature > 210 && humidity < 30)//Desierto
 				{
 					sprite_index = sprSand;
+					set_tree(sprPinetree);
 				}
 				else if(temperature > 160 && humidity < 80) //acacia
 				{

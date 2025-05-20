@@ -1,19 +1,19 @@
 //TEMPORAL
-if(keyboard_check_pressed(vk_up))
+if(keyboard_check(vk_up))
 {
-	y-=16;
+	y-=CHUNK_SIZE;
 }
-if(keyboard_check_pressed(vk_right))
+if(keyboard_check(vk_right))
 {
-	x+=16;
+	x+=CHUNK_SIZE;
 }
-if(keyboard_check_pressed(vk_left))
+if(keyboard_check(vk_left))
 {
-	x-=16;
+	x-=CHUNK_SIZE;
 }
-if(keyboard_check_pressed(vk_down))
+if(keyboard_check(vk_down))
 {
-	y+=16;
+	y+=CHUNK_SIZE;
 }
 
 w_width = window_get_width();

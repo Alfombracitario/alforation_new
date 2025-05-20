@@ -114,28 +114,37 @@ if(invopen == true)
 		
 		if(craftableresults >= 1)
 		{
-			if(invmousex > craftx && invmousex < craftx+(craftableresults<<4) && invmousey > crafty+24 && invmousey < crafty+40)
+			var _itemsperow = 6;
+			var _slotsy = (((5+craftableresults) div _itemsperow)<<4)
+			
+			if(invmousex > craftx && invmousex < craftx+(craftableresults<<4) && invmousey > crafty+24 && invmousey < crafty+24+_slotsy)
 			{
                 
-				var _i = (invmousex-craftx)>>4;//qué slot del craftable?
-				if(keyboard_check(vk_shift))
+				var _ix = (invmousex-craftx)>>4;//qué slot del craftable?
+				var _iy = (((invmousey-8)-crafty)>>4)-1;
+				var _i = (_iy*_itemsperow)+_ix;
+				
+				if(craftableresults > _i)
 				{
-					while(craftable[_i][0] == craftresult[0] || craftresult[0] == 0)
-	                {
-						set_craft_target(_i);
-	                }
-					audio_play_sound(sndSelect,0,0,global.sndvol);	
-				}
-				else
-				{
-	                if(craftable[_i][0] == craftresult[0] || craftresult[0] == 0)
-	                {
-						set_craft_target(_i);
+					if(keyboard_check(vk_shift))
+					{
+						while(craftable[_i][0] == craftresult[0] || craftresult[0] == 0)
+		                {
+							set_craft_target(_i);
+		                }
 						audio_play_sound(sndSelect,0,0,global.sndvol);	
-	                }
-	                else {
-	                	audio_play_sound(sndInvalid,0,0,global.sndvol);
-	                }
+					}
+					else
+					{
+		                if(craftable[_i][0] == craftresult[0] || craftresult[0] == 0)
+		                {
+							set_craft_target(_i);
+							audio_play_sound(sndSelect,0,0,global.sndvol);	
+		                }
+		                else {
+		                	audio_play_sound(sndInvalid,0,0,global.sndvol);
+		                }
+					}
 				}
 			}
 		}
@@ -532,7 +541,7 @@ else//no hay nada en el eje Y, avanza todo
 
 */
 
-collide_and_move_between_blocks(_xmove,_ymove,7,_block_array)
+collide_and_move_between_blocks(_xmove,_ymove,4,_block_array)
 show_debug_message(_block_array);
 }
 

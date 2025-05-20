@@ -24,3 +24,6 @@ if(room == game)
 		event_perform(ev_draw,0);
 	}
 }
+//preparamos para dibujo 2D
+shader_reset();
+gpu_set_ztestenable(false);
