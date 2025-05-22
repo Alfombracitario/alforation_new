@@ -1,6 +1,6 @@
 function update_chunk_billboards(){
 
-//esto es por culpa del freeze
+//remember I used vertex_freeze
 vertex_delete_buffer(v);
 
 v = vertex_create_buffer();
@@ -16,10 +16,10 @@ tc[T_TREE].y1 = uv[1];
 tc[T_TREE].y2 = uv[3];
 vertex_begin(v,global.f);
 #region suelo
-//primero dibujamos el suelo
+//adding the floor
 var fuvs = get_texture_coords_sprite(sprite_index,image_index);
 
-// Tamaño de cada imagen
+// size of the sprite
 var half = CHUNK_SIZE * 0.5; // 128 si CHUNK_SIZE = 256
 
 // Imagen 0 (arriba izquierda)
@@ -141,16 +141,16 @@ for(var i = 0; i < objectcount; i++)
 		c = color[tuc[j]];
 		var h = j;
 		
-        //muy mala pracitca pero bueno
+        //I don't think this is a good practice
         zsize[1] = -16;
         if j == T_TALLGRASS zsize[1] = -32;
 	    if j == T_BAMBOO zsize[1] = -52;
             
-        if !j == 0 j = 1;//si no es un arbol usa modelo 0
+        if !j == 0 j = 1;//if isn't a tree, it uses model 0
         
 		
-        var _a = 8/255
-        if j == 0 _a = tw/255//árbol
+        var _a = 8/255//this is for the billboard shader
+        if j == 0 _a = tw/255//tree
     
 		var _x = objects[i][1];
 		var _y = objects[i][2];

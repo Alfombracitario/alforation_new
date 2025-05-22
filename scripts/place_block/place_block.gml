@@ -4,8 +4,8 @@ function place_block(){
 	var _x = rcx>>0;
 	var _y = rcy>>0;
 	var _z = -z>>4;
-	var ins = instance_place(x,y,objChunk);//esto debo mejorarlo luego
-	with(ins)//añadir un bloque al chunk
+	var ins = instance_place(x,y,objChunk);//I HAVE to improve this
+	with(ins)//adds a block to the chunk
 	{
 		if!(_cx == cx && _cy == cy) exit;
 		if(zlimit < _z)
@@ -13,7 +13,7 @@ function place_block(){
 			show_debug_message("Block chunk updated")
 			
 			if(zlimit == -1)
-			{//se inicia para poder soportar bloques
+			{
 				show_debug_message("Block chunk created")
 				t = vertex_create_buffer();
 				vertex_begin(t,global.f);
@@ -33,12 +33,12 @@ function place_block(){
 			}
 			zlimit = _z;
 			
-		}//fin de la actualización
+		}//Ends of the update
 		
-		//poner los bloques
+		//add the block to the array
 		blocks[_x][_y][_z] = 1;
 			
-		//se rearma la malla 3D
+		//Re build the 3D model of the blocks
 		update_chunk_blocks();
 		
 	}

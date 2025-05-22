@@ -2,7 +2,7 @@ function draw_3d_cube(_x,_y,_z,sprite, _color = c_white) {
 	//top
 	var tex = get_texture_coords_sprite(sprBtiles,sprite)
 	
-	_z = _z*-16 //convertir z a una variable normal
+	_z = _z*-16 //converts Z to a "normal" value
 	var sx = _x+16;
 	var sy = _y+16;
 	var zv = _z-16;

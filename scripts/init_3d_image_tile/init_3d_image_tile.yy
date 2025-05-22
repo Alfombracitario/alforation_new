@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"init_3d_image_tile",
   "parent":{
-    "name":"3D",
-    "path":"folders/Scripts/3D.yy",
+    "name":"i don't need this anymore",
+    "path":"folders/Scripts/3D/i don't need this anymore.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

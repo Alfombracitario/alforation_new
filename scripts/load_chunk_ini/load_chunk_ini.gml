@@ -35,7 +35,6 @@ function load_chunk_ini(cx, cy) {
 				save = false;
 				objectcount = 0;
 				var times = 0;
-                
 				if(temperature > 210 && humidity < 30)//Desierto
 				{
 					times = irandom(11);
@@ -48,6 +47,29 @@ function load_chunk_ini(cx, cy) {
                     
                     set_tree(sprPinetree)
 				}
+				else if(temperature > 180 && humidity < 40 && temperature < 210 && humidity > 35)//Baobab
+				{
+					times = irandom(3);
+					add_obj(times,T_DEAD_BUSH);
+					
+					times = irandom(15);
+					add_obj(times,T_GRASS);
+					
+                    times = irandom(50);
+                    add_obj(times,T_TALLGRASS);
+					
+					times = irandom(4);
+					add_obj(times,T_TREE);
+					
+					times = irandom(5);
+					add_obj(times,T_STONE);
+					
+					times = irandom(1);
+					add_obj(times,T_STONE_COAL);
+					
+					set_tree(sprBaobabtree);
+					image_blend = get_color_colormap(temperature,humidity);
+				}
 				else if(temperature > 160 && humidity < 80) //acacia
 				{
 					times = irandom(2);
@@ -56,7 +78,7 @@ function load_chunk_ini(cx, cy) {
 					times = irandom(11);
 					add_obj(times,T_TREE);
 					
-					times = irandom(21);
+					times = irandom(19);
 					add_obj(times,T_GRASS);
                     
                     times = irandom(15);
@@ -279,6 +301,11 @@ function load_chunk_ini(cx, cy) {
 				{
 					sprite_index = sprSand;
 					set_tree(sprPinetree);
+				}
+				else if(temperature > 180 && humidity < 40 && temperature < 210 && humidity > 35)//Baobab
+				{
+					set_tree(sprBaobabtree);
+					image_blend = get_color_colormap(temperature,humidity);
 				}
 				else if(temperature > 160 && humidity < 80) //acacia
 				{
