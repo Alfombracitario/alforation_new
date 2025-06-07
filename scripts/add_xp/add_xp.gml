@@ -1,5 +1,6 @@
 function add_xp(amount)
 {
+	if amount == 0 return false
     with(objPlayer)
     {
         experience += amount;

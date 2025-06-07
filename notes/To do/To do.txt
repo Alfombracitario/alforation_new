@@ -1,0 +1,29 @@
+Building system:
+	Collisions
+	Building
+	Destroy
+	
+Entities:
+	More enemies
+	Land animals
+	Flying animals
+	
+Structures:
+	Villages (?)
+	Dungeons:
+		Different levels
+
+Environment:
+	Clouds
+	Stars (night)
+	particles
+	
+Main game:
+	Enchanting
+	"Impostor"
+	
+Dificulty curve
+
+Magic stuff
+
+Bosses

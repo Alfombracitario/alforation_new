@@ -1,19 +1,20 @@
-//dibujar toda la escena
+//inicio del dibujo
 //primero las cosas sin zbuffer
 with(objSun)
 {
 	event_perform(ev_draw,0);
 }
-
 gpu_set_ztestenable(true);
 //ahora los elementos normales
 
 //ahora el terreno
 if(room == game)
 {
+	movetime+=1+abs(sin(movetime));
 	shader_set(sBillboard);
 	shader_set_uniform_f(_t,global.sincyphp,global.coscyphp);
 	shader_set_uniform_f(fog_settings,fog_depth-fog_density,fog_depth);
+	shader_set_uniform_f(_move,dsin(movetime)+0.5);
 	var r = color_get_red(fog_color)/255;
 	var g = color_get_green(fog_color)/255;
 	var b = color_get_blue(fog_color)/255;
@@ -23,7 +24,6 @@ if(room == game)
 	{
 		event_perform(ev_draw,0);
 	}
+	shader_reset();
 }
-//preparamos para dibujo 2D
-shader_reset();
-gpu_set_ztestenable(false);
+//ahora se dibuja el resto por si solo

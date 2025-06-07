@@ -2,6 +2,8 @@ draw_set_halign(fa_left);
 _t  = shader_get_uniform(sBillboard, "_t");
 fog_settings  = shader_get_uniform(sBillboard, "fog_settings");
 fogcol = shader_get_uniform(sBillboard,"fog_color");
+_move = shader_get_uniform(sBillboard,"_move");
+movetime = 0;
 factordiv = 1;
 global.players = 1;
 

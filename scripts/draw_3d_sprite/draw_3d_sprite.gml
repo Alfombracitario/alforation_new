@@ -7,15 +7,16 @@ function draw_3d_sprite()
 	var leftx = x + ccyphptsw;
 	var rightx= x - ccyphptsw;
     vertex_begin(v,global.f);
-    vertex_position_3d(v,leftx,lefty,z);
-    vertex_color(v,image_blend,image_alpha);
-	vertex_texcoord(v,uv.x2,uv.y2);
     vertex_position_3d(v,leftx,lefty,zv);
     vertex_color(v,image_blend,image_alpha);
     vertex_texcoord(v,uv.x2,uv.y1);
+    vertex_position_3d(v,leftx,lefty,z);
+    vertex_color(v,image_blend,image_alpha);
+	vertex_texcoord(v,uv.x2,uv.y2);
     vertex_position_3d(v,rightx,righty,zv);
     vertex_color(v,image_blend,image_alpha);
     vertex_texcoord(v,uv.x1,uv.y1);
+	
     vertex_position_3d(v,leftx,lefty,z);
     vertex_color(v,image_blend,image_alpha);
     vertex_texcoord(v,uv.x2,uv.y2);

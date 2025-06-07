@@ -43,6 +43,7 @@
   },
   "name":"alforation",
   "resources":[
+    {"id":{"name":"To do","path":"notes/To do/To do.yy",},},
     {"id":{"name":"objBcreateworld","path":"objects/objBcreateworld/objBcreateworld.yy",},},
     {"id":{"name":"objBdeleteworld","path":"objects/objBdeleteworld/objBdeleteworld.yy",},},
     {"id":{"name":"objBloadworld","path":"objects/objBloadworld/objBloadworld.yy",},},

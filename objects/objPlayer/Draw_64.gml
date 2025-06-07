@@ -1,3 +1,5 @@
+//preparamos para dibujo 2D
+gpu_set_ztestenable(false);
 //dibujar la pantalla
 if(global.hd)
 {

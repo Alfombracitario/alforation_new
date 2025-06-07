@@ -1,9 +1,9 @@
 init_3d_image_tile(0); //impostor
 
+f[0] = global.f;
 vertex_format_begin();
 vertex_format_add_position_3d();
 vertex_format_add_color();
-f[0] = global.f;
 f[1] = vertex_format_end();
 v[1] = vertex_create_buffer();
 
@@ -16,3 +16,9 @@ th = 0;
 tree = 0;
 uv = [];
 activated = false;
+rotation = 0;
+hp = 0;
+image_xscale = 2;
+image_yscale = image_xscale;
+chunk_id = 0;
+particles = [];
