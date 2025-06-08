@@ -1,4 +1,4 @@
 if(activated)
 {
-	vertex_submit(v[0],pr_trianglelist,tree);
+	vertex_submit(v,pr_trianglelist,tree);
 }

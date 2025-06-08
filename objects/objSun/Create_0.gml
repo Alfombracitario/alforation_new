@@ -6,3 +6,5 @@ sunuv = sprite_get_uvs(sprSun,0);
 moonuv = sprite_get_uvs(sprSun,1);
 _time = 0;
 z = 0;
+sz = 0;
+sy = 0;

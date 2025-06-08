@@ -17,7 +17,10 @@ else {
 }
 //dibujar la pantalla a resolución completa
 draw_surface_stretched_ext(application_surface,0,0,gw,gh,timecolor,1);
-
+if(global.shadows)
+{
+	draw_surface_ext(shadows_surface,0,0,0.25,0.25,0,c_white,1);
+}
 //dibujar el contorno de oscuridad
 if(room != game)
 {
@@ -57,7 +60,7 @@ if(inventory[hotbar[hotbarsel]][0] != 0)//item en la mano
 {
     var hix = (gw * 0.72) + (sin(sway_x *0.1) * sway_amount * 8 * weapon_swaying)
     var hiy = (gh*0.6)+(sin(sway_y *0.1) + 1) * sway_amount * 2 * weapon_swaying + weapon_y+(cooldown<<2)
-    var angle = 12
+    var angle = 12-itemangle;
 	var scalebase = gh*0.025;
     if(global.hd)
     {
@@ -68,7 +71,7 @@ if(inventory[hotbar[hotbarsel]][0] != 0)//item en la mano
     		_color = merge_color(timecolor,$666666,_index);
     	if(inventory[hotbar[hotbarsel]][0] < 100)
     	{
-    		angle = 24;
+    		angle = itemangle+24;
     		hiy += 16;
     		for(var i = 0.5; i <8; i+=0.5)//armas
     		{

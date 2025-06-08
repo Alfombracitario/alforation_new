@@ -1,5 +1,4 @@
 varying float v_LightDepth;
-
 const float SCALE_FACTOR = 16777215.0;
 vec3 toDepthColor(float depth) {
 	float int_kinda = depth * SCALE_FACTOR;
@@ -9,6 +8,5 @@ vec3 toDepthColor(float depth) {
 
 void main() {
     gl_FragColor = vec4(toDepthColor(v_LightDepth), 1);
-    
 	
 }

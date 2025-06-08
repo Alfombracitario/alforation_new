@@ -1,7 +1,7 @@
 _time = objPlayer._time;
 x = objPlayer.x;
 y = objPlayer.y-CHUNK_SIZE*dsin(_time+90);
-
+sy = y;
 var lefty = y;
 var righty= y;
 var leftyv = y-(32*dsin(_time));
@@ -12,6 +12,8 @@ var rightx= x - 16;
 var _z = objPlayer.z
 var z = _z + CHUNK_SIZE*dsin(_time+180);
 var zv = _z + CHUNK_SIZE*dsin(_time+188);
+
+sz = z;
 
 vertex_begin(v,global.f);
 //sol
@@ -38,7 +40,6 @@ vertex_texcoord(v,sunuv[0],sunuv[1]);
 
 //luna
 _time += 180;
-x = objPlayer.x;
 y = objPlayer.y-CHUNK_SIZE*dsin(_time+90);
 
 lefty = y;

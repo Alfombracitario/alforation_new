@@ -1,4 +1,5 @@
 //click izquierdo
+itemangle+=30;
 var damdiv = 1-(cooldown/cooldownmax);
 var item = inventory[hotbar[hotbarsel]][0];
 hitanim_tic = 60;

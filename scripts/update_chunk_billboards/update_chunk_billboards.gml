@@ -137,6 +137,13 @@ for(var i = 0; i < objectcount; i++)
 {
     
 		var j = objects[i][0];
+		if(global.hd = false)
+		{
+			if(j == T_TALLGRASS || j == T_FERN || j == T_GRASS)
+			{
+				continue;
+			}
+		}
 		if j == -1 continue; //si es -1 entonces saltar
 		c = color[tuc[j]];
 		var h = j;

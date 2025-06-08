@@ -580,19 +580,9 @@ sin_tic += sway_amount*swayspeed;
 sway_x += sway_amount *0.7*swayspeed;
 sway_y += sway_amount *1.3*swayspeed;
 
+itemangle*=0.85;
 //Update the camera
-if(global.shadows)
-{
-	//from the sun!?
-	xfrom = objSun.x;
-	yfrom = objSun.y;
-	_z = objSun.z;
-	xto = x;
-	yto = y;
-	zto = z;
-	var mat = matrix_build_lookat(xfrom, yfrom, _z, xto, yto, zto, 0, 0, 1);
-}
-var mat = matrix_build_lookat(xfrom, yfrom,z+_z, xto, yto,z+_z + zto, 0, 0, 1);
+mat = matrix_build_lookat(xfrom, yfrom,z+_z, xto, yto,z+_z + zto, 0, 0, 1);
 camera_set_view_mat(view_camera[0], mat);
 
 //3D audio

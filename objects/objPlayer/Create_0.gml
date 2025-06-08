@@ -1,16 +1,24 @@
 draw_set_halign(fa_left);
+if(global.hd)
+{
 _t  = shader_get_uniform(sBillboard, "_t");
 fog_settings  = shader_get_uniform(sBillboard, "fog_settings");
 fogcol = shader_get_uniform(sBillboard,"fog_color");
 _move = shader_get_uniform(sBillboard,"_move");
 movetime = 0;
+}
+else
+{
+_t  = shader_get_uniform(sBillboard_fast, "_t");
+fog_settings  = shader_get_uniform(sBillboard_fast, "fog_settings");
+fogcol = shader_get_uniform(sBillboard_fast,"fog_color");
+}
 factordiv = 1;
 global.players = 1;
 
 global.shadows = false;
 if(global.shadows)
 {
-	_ts  = shader_get_uniform(sBillboard_shadows, "_ts");
 	shadows_surface = surface_create(1024,1024);
 }
 
@@ -139,6 +147,7 @@ Pkey_d = 0;
 Pclick_r = 0;
 Pclick_l = 0;
 
+itemangle =0;
 
 //variables de mierda de optimización
 halfpi = pi*0.5;

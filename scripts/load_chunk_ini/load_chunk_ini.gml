@@ -81,7 +81,7 @@ function load_chunk_ini(cx, cy) {
 					times = irandom(19);
 					add_obj(times,T_GRASS);
                     
-                    times = irandom(15);
+                    times = irandom(25);
                     add_obj(times,T_TALLGRASS);
 					
 					times = irandom(5);
@@ -150,13 +150,13 @@ function load_chunk_ini(cx, cy) {
 					times = irandom(5);
 					add_obj(times,T_DEAD_BUSH);
 					
-					times = irandom(6);
+					times = irandom(10);
 					add_obj(times,T_FERN);
 					
 					times = irandom(12);
 					add_obj(times,T_GRASS);
                     
-                    times = irandom(2);
+                    times = irandom(6);
                     add_obj(times,T_TALLGRASS);
 					
 					set_tree(sprPinetreebig);
@@ -170,7 +170,7 @@ function load_chunk_ini(cx, cy) {
 					times = irandom(12);
 					add_obj(times,T_TREE);
 				
-					times = irandom(15);
+					times = irandom(18);
 					add_obj(times,T_GRASS);
 				
 					times = irandom(7);
@@ -242,7 +242,7 @@ function load_chunk_ini(cx, cy) {
 					times = irandom(11);
 					add_obj(times,T_TREE);
 				
-					times = irandom((humidity+temperature)>>4);
+					times = irandom((humidity+temperature)>>3);
 					add_obj(times,T_GRASS);
                     
                     times = irandom(4);

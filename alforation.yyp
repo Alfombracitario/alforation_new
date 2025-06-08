@@ -127,6 +127,7 @@
     {"id":{"name":"update_chunks","path":"scripts/update_chunks/update_chunks.yy",},},
     {"id":{"name":"update_world","path":"scripts/update_world/update_world.yy",},},
     {"id":{"name":"voxel_get","path":"scripts/voxel_get/voxel_get.yy",},},
+    {"id":{"name":"sBillboard_fast","path":"shaders/sBillboard_fast/sBillboard_fast.yy",},},
     {"id":{"name":"sBillboard_shadows","path":"shaders/sBillboard_shadows/sBillboard_shadows.yy",},},
     {"id":{"name":"sBillboard","path":"shaders/sBillboard/sBillboard.yy",},},
     {"id":{"name":"sGrayscale","path":"shaders/sGrayscale/sGrayscale.yy",},},
