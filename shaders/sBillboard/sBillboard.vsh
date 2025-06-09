@@ -12,8 +12,7 @@ varying vec4 v_vColour;
 varying float v_fogFactor;
 
 void main() {
-    float a = -floor((in_Colour.a - 0.5) * 255.0);
-
+     float a = -floor((in_Colour.a - 0.5) * 255.0);
     //Condición: vértice arriba (a > 0), color no blanco 
 
     bool apply_move = (in_Position.z < -1.0) && any(lessThan(in_Colour.rgb, vec3(0.999)));

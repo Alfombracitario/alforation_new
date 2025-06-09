@@ -1,17 +1,17 @@
 draw_set_halign(fa_left);
 if(global.hd)
 {
-_t  = shader_get_uniform(sBillboard, "_t");
-fog_settings  = shader_get_uniform(sBillboard, "fog_settings");
-fogcol = shader_get_uniform(sBillboard,"fog_color");
-_move = shader_get_uniform(sBillboard,"_move");
-movetime = 0;
+	_t  = shader_get_uniform(sBillboard, "_t");
+	fog_settings  = shader_get_uniform(sBillboard, "fog_settings");
+	fogcol = shader_get_uniform(sBillboard,"fog_color");
+	_move = shader_get_uniform(sBillboard,"_move");
+	movetime = 0;
 }
 else
 {
-_t  = shader_get_uniform(sBillboard_fast, "_t");
-fog_settings  = shader_get_uniform(sBillboard_fast, "fog_settings");
-fogcol = shader_get_uniform(sBillboard_fast,"fog_color");
+	_t  = shader_get_uniform(sBillboard_fast, "_t");
+	fog_settings  = shader_get_uniform(sBillboard_fast, "fog_settings");
+	fogcol = shader_get_uniform(sBillboard_fast,"fog_color");
 }
 factordiv = 1;
 global.players = 1;
@@ -73,7 +73,6 @@ running = false;
 zspeed = 0;
 grav = -0.2*global.fpsmode;
 jumpf = 2;
-knockback = 0;
 invmove = false;
 craftmove = false;
 craftresult = [0,0,0,0,0];
@@ -183,11 +182,13 @@ if room == dungeon tiles = objDungeon.tiles;
 if room == cave tiles = objCave.tiles;
 
 _health = ini_read_real("p","health",100);
+_mana = ini_read_real("p","mana",100);
 _hunger = ini_read_real("p","hunger",100);
 _temperature = ini_read_real("p","temp",128);
 cam_yaw = ini_read_real("p","camyaw",0);
 _time = ini_read_real("p","time",0);
 maxhealth = ini_read_real("p","maxhealth",100);
+maxmana = ini_read_real("p","maxmana",100);
 experience = ini_read_real("p","xp",0);
 level = ini_read_real("p","lv",1);
 xp_need = floor(25 * level * power(1.1, level));
@@ -669,3 +670,42 @@ for(var i = 0; i<16; i++)
 		[I_COAL,1]
 	])
 	#endregion
+	
+	
+	
+//temporal shit
+
+//clouds
+v = vertex_create_buffer();
+vertex_begin(v,global.f);
+
+var fuvs = get_texture_coords_sprite(sprClouds,0);
+var _size = CHUNK_SIZE<<4
+var _cz = -512;
+
+vertex_position_3d(v, x + _size, y + _size, _cz);
+vertex_color(v, c_white, 1);
+vertex_texcoord(v, fuvs.x1, fuvs.y1);
+
+vertex_position_3d(v, x, y, _cz);
+vertex_color(v, c_white, 1);
+vertex_texcoord(v, fuvs.x2, fuvs.y2);
+
+vertex_position_3d(v, x, y + _size, _cz);
+vertex_color(v, c_white, 1);
+vertex_texcoord(v, fuvs.x2, fuvs.y1);
+
+
+vertex_position_3d(v, x + _size, y, _cz);
+vertex_color(v, c_white, 1);
+vertex_texcoord(v, fuvs.x1, fuvs.y2);
+
+vertex_position_3d(v, x, y, _cz);
+vertex_color(v, c_white, 1);
+vertex_texcoord(v, fuvs.x2, fuvs.y2);
+
+vertex_position_3d(v, x + _size, y + _size, _cz);
+vertex_color(v, c_white, 1);
+vertex_texcoord(v, fuvs.x1, fuvs.y1);
+
+vertex_end(v);

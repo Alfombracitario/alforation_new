@@ -4,4 +4,5 @@ if(activated == true)
 	other.knockspd = -4;
     with(objPlayer) damage_hand_item(1);
 	activated = false;
+	state = 1;
 }

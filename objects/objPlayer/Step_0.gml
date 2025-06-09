@@ -613,3 +613,13 @@ if(global.update3Dtime == update3Dindex)
 	update3Dindex = 0;
 }
 if prevhotbarsel != hotbarsel get_hand_text();
+
+if(_health <= 0)
+{
+	level = 0;
+	experience = 0;
+	x = 0;
+	y = 0;
+	_health = maxhealth;
+}
+speed*=0.9;

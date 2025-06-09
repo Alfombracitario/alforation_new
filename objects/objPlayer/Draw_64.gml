@@ -35,7 +35,7 @@ if(added_tic > 0)//item conseguido
 	var _y = 24
 	if(added_tic < _y)
 	{
-		_y = added_tic
+		_y = added_tic;
 	}
 	added_tic--;
 	draw_sprite_ext(sprTransparentuitriangleleft,0,gw,_y-24,3,1,0,$FFFFFF,1);
@@ -95,7 +95,7 @@ if(inventory[hotbar[hotbarsel]][0] != 0)//item en la mano
     		draw_sprite_ext(sprItems,inventory[hotbar[hotbarsel]][0],hix-8,hiy-8,scalebase+0.8,scalebase+0.8,angle,_color,1);
     	}
     }
-    else {
+    else {//global.hd disabled
     
         draw_sprite_ext(sprItems,inventory[hotbar[hotbarsel]][0],hix-4,hiy+4,8.3,8.3,angle,c_white,1);
     }
@@ -116,11 +116,14 @@ draw_sprite_ext(sprBar,0,0,10,_hunger*0.082,1,0,c_orange,1);//contenido
 draw_sprite_ext(sprBar,1,0,0,8.2,1,0,c_red,1);
 draw_sprite_ext(sprBar,0,0,0,_health*0.082,1,0,c_red,1);
 
+draw_sprite_ext(sprBar,1,0,20,8.2,1,0,$F0D510,1);
+draw_sprite_ext(sprBar,0,0,20,_mana*0.082,1,0,$F0D510,1);
+
 //barra de xp
 var xp = experience/xp_need;
 var color = merge_color($FF7f00,$00FF70,xp);
-draw_sprite_ext(sprBar,1,0,20,8.2,0.8,0,color,1);
-draw_sprite_ext(sprBar,0,0,20,xp*8.2,0.8,0,color,1);
+draw_sprite_ext(sprBar,1,0,30,8.2,0.8,0,color,1);
+draw_sprite_ext(sprBar,0,0,30,xp*8.2,0.8,0,color,1);
 draw_set_font(global.font);
 draw_text(0,20,level);
 draw_set_font(global.font2);
@@ -284,5 +287,6 @@ if(display_info == true)
 	draw_text(0,0,"X: "+string(x>>4)+"\nY: "+string(y>>4)+"\nZ: "+string(-z>>4)+"\nCx: "+string(pcx)+"\nCy: "+string(pcy)+"\nRcx: "+string(rcx<<0)+"\nRcy: "+string(rcy<<0)+"\nFPS "+string(fps)+"\nFPSr "+string(fps_real));
 	draw_text(0,64,instance_count);
 }
+draw_set_font(global.font)
 draw_text(gw>>1,0,fps_real);
 draw_text(gw>>1,16,fps);

@@ -54,5 +54,9 @@ if(room == game)
 		event_perform(ev_draw,0);
 	}
 	shader_reset();
+	
+	gpu_set_fog(true,sky_color,fog_depth,fog_density)
+	vertex_submit(v,pr_trianglelist,2);
+	gpu_set_fog(false,0,0,0);
 }
 //ahora se dibuja el resto por si solo

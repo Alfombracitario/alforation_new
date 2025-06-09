@@ -57,6 +57,7 @@
     {"id":{"name":"objDungeonladderdown","path":"objects/objDungeonladderdown/objDungeonladderdown.yy",},},
     {"id":{"name":"objDust","path":"objects/objDust/objDust.yy",},},
     {"id":{"name":"objEpronifo","path":"objects/objEpronifo/objEpronifo.yy",},},
+    {"id":{"name":"objErock1","path":"objects/objErock1/objErock1.yy",},},
     {"id":{"name":"objEslime","path":"objects/objEslime/objEslime.yy",},},
     {"id":{"name":"objHit","path":"objects/objHit/objHit.yy",},},
     {"id":{"name":"objHitscan","path":"objects/objHitscan/objHitscan.yy",},},
