@@ -6,6 +6,14 @@ if(global.hd)
 	fogcol = shader_get_uniform(sBillboard,"fog_color");
 	_move = shader_get_uniform(sBillboard,"_move");
 	movetime = 0;
+	
+	//nubes
+	_cltime = shader_get_uniform(sClouds,"time");
+	_cfogcol = shader_get_uniform(sClouds,"fog_color");
+	_cfogset = shader_get_uniform(sClouds, "fog_settings");
+	_cplayerpos = shader_get_uniform(sClouds, "p_pos");
+	_timecol = shader_get_uniform(sClouds, "t_color");
+	cloudtime = 0;
 }
 else
 {
@@ -672,40 +680,51 @@ for(var i = 0; i<16; i++)
 	#endregion
 	
 	
-	
-//temporal shit
 
+if(global.hd)
+{
 //clouds
-v = vertex_create_buffer();
-vertex_begin(v,global.f);
+	v = vertex_create_buffer();
+	vertex_begin(v,global.f);
 
-var fuvs = get_texture_coords_sprite(sprClouds,0);
-var _size = CHUNK_SIZE<<4
-var _cz = -512;
+	var fuvs = get_texture_coords_sprite(sprClouds,0);
+	var _size = CHUNK_SIZE<<4;
+	var _cz = -512;
+	
+	var _x = 0;
+	var _y = 0;
+	
+	for(i = -1; i<1; i++)
+	{
+		for(j = -1; j<1; j++)
+		{
+			_cz = -512;
+			repeat(16)
+			{
+				_x = i*_size;
+				_y = j*_size;
+				_cz--;
+				vertex_position_3d(v, _x + _size, _y + _size, _cz);
+				vertex_color(v, c_white, 1);
+				vertex_texcoord(v, fuvs.x1, fuvs.y1);
+				vertex_position_3d(v, _x, _y, _cz);
+				vertex_color(v, c_white, 1);
+				vertex_texcoord(v, fuvs.x2, fuvs.y2);
+				vertex_position_3d(v, _x, _y + _size, _cz);
+				vertex_color(v, c_white, 1);
+				vertex_texcoord(v, fuvs.x2, fuvs.y1);
 
-vertex_position_3d(v, x + _size, y + _size, _cz);
-vertex_color(v, c_white, 1);
-vertex_texcoord(v, fuvs.x1, fuvs.y1);
-
-vertex_position_3d(v, x, y, _cz);
-vertex_color(v, c_white, 1);
-vertex_texcoord(v, fuvs.x2, fuvs.y2);
-
-vertex_position_3d(v, x, y + _size, _cz);
-vertex_color(v, c_white, 1);
-vertex_texcoord(v, fuvs.x2, fuvs.y1);
-
-
-vertex_position_3d(v, x + _size, y, _cz);
-vertex_color(v, c_white, 1);
-vertex_texcoord(v, fuvs.x1, fuvs.y2);
-
-vertex_position_3d(v, x, y, _cz);
-vertex_color(v, c_white, 1);
-vertex_texcoord(v, fuvs.x2, fuvs.y2);
-
-vertex_position_3d(v, x + _size, y + _size, _cz);
-vertex_color(v, c_white, 1);
-vertex_texcoord(v, fuvs.x1, fuvs.y1);
-
-vertex_end(v);
+				vertex_position_3d(v, _x + _size, _y, _cz);
+				vertex_color(v, c_white, 1);
+				vertex_texcoord(v, fuvs.x1, fuvs.y2);
+				vertex_position_3d(v, _x, _y, _cz);
+				vertex_color(v, c_white, 1);
+				vertex_texcoord(v, fuvs.x2, fuvs.y2);
+				vertex_position_3d(v, _x + _size, _y + _size, _cz);
+				vertex_color(v, c_white, 1);
+				vertex_texcoord(v, fuvs.x1, fuvs.y1);
+			}
+		}
+	}
+	vertex_end(v);
+}

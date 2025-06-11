@@ -131,6 +131,7 @@
     {"id":{"name":"sBillboard_fast","path":"shaders/sBillboard_fast/sBillboard_fast.yy",},},
     {"id":{"name":"sBillboard_shadows","path":"shaders/sBillboard_shadows/sBillboard_shadows.yy",},},
     {"id":{"name":"sBillboard","path":"shaders/sBillboard/sBillboard.yy",},},
+    {"id":{"name":"sClouds","path":"shaders/sClouds/sClouds.yy",},},
     {"id":{"name":"sGrayscale","path":"shaders/sGrayscale/sGrayscale.yy",},},
     {"id":{"name":"musDungeonA","path":"sounds/musDungeonA/musDungeonA.yy",},},
     {"id":{"name":"musInfluenza","path":"sounds/musInfluenza/musInfluenza.yy",},},

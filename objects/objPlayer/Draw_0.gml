@@ -4,16 +4,34 @@ with(objSun)
 {
 	event_perform(ev_draw,0);
 }
-gpu_set_ztestenable(true);
-//ahora los elementos normales
 
 //ahora el terreno
 if(room == game)
 {
 	if(global.hd)
 	{
-		if(global.shadows)
+	//nubes
+	cloudtime += global.fpsmode;
+	cloudtime = cloudtime & 4095;
+	shader_set(sClouds);
+	shader_set_uniform_f(_cplayerpos,x,y);
+	shader_set_uniform_f(_cltime,cloudtime);
+	var cfc = fog_color
+	var r = color_get_red(cfc)/255;
+	var g = color_get_green(cfc)/255;
+	var b = color_get_blue(cfc)/255;
+	shader_set_uniform_f(_cfogcol,r,g,b);
+	var cfc = timecolor
+	var r = color_get_red(cfc)/255;
+	var g = color_get_green(cfc)/255;
+	var b = color_get_blue(cfc)/255;
+	shader_set_uniform_f(_timecol,r,g,b);
+	shader_set_uniform_f(_cfogset,fog_depth-fog_density,fog_depth);
+	vertex_submit(v,pr_trianglelist,3);
+	
+	if(global.shadows)//a la mierda el rendimiento
 		{
+			gpu_set_ztestenable(true);//actvar el zbuffer
 			var smat = matrix_build_lookat(x, objSun.sy, objSun.sz, x, y, z, 0, 0, 1);
 			camera_set_view_mat(view_camera[0], smat);
 			shader_set(sBillboard_shadows);
@@ -29,6 +47,8 @@ if(room == game)
 			surface_reset_target();
 			camera_set_view_mat(view_camera[0], mat);
 		}
+	
+	//el resto 
 	movetime+=1+abs(sin(movetime));
 	shader_set(sBillboard);
 	shader_set_uniform_f(_t,global.sincyphp,global.coscyphp);
@@ -39,7 +59,7 @@ if(room == game)
 	var b = color_get_blue(fog_color)/255;
 	shader_set_uniform_f(fogcol,r,g,b);
 	}
-	else
+	else//gráficos básicos
 	{
 		shader_set(sBillboard_fast);
 		shader_set_uniform_f(_t,global.sincyphp,global.coscyphp);
@@ -49,14 +69,11 @@ if(room == game)
 		var b = color_get_blue(fog_color)/255;
 		shader_set_uniform_f(fogcol,r,g,b);	
 	}
+	gpu_set_ztestenable(true);//actvar el zbuffer
 	with(objChunk)
 	{
 		event_perform(ev_draw,0);
 	}
 	shader_reset();
-	
-	gpu_set_fog(true,sky_color,fog_depth,fog_density)
-	vertex_submit(v,pr_trianglelist,2);
-	gpu_set_fog(false,0,0,0);
 }
 //ahora se dibuja el resto por si solo
