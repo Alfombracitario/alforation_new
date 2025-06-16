@@ -9,7 +9,7 @@ uniform float time;
 void main()
 {
     // Desplazamiento de textura (opcional)
-    vec2 scroll = vec2(.000244140625,.000244140625)*time;
+    vec2 scroll = vec2(.0001220703125,.0001220703125)*time;
     vec4 tex = texture2D(gm_BaseTexture, fract(v_coord + scroll));
     
     // Color base

@@ -81,3 +81,10 @@ surface_resize(application_surface,room_width,room_height);
 display_set_gui_size(room_width,room_height);
 }
 }
+if(screen = 0)
+{
+	var _y = room_height*0.5;
+	button[0] = [0,16,2,0.5,_y+0,"Play"];
+	button[1] = [1,16,2,0.5,_y+24,"Settings"];
+	button[2] = [2,16,2,0.5,_y+48,"Exit game"];
+}

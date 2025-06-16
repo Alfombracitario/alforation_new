@@ -12,10 +12,10 @@ if(room == game)
 	{
 	//nubes
 	cloudtime += global.fpsmode;
-	cloudtime = cloudtime & 4095;
+	cloudtime = cloudtime & 8191;
 	shader_set(sClouds);
 	shader_set_uniform_f(_cplayerpos,x,y);
-	shader_set_uniform_f(_cltime,cloudtime);
+	shader_set_uniform_f(_cltime,cloudtime*0.125);
 	var cfc = fog_color
 	var r = color_get_red(cfc)/255;
 	var g = color_get_green(cfc)/255;

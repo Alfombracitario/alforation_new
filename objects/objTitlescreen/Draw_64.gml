@@ -38,6 +38,16 @@ if(screen == -1)
 }
 else
 {
+	if(screen == 0)//title text
+	{
+		for (var i = 0; i < 16; i++)
+		{
+			var scale = 1+(i*0.01)
+			var col = merge_color($7f7f7f,$ffffff,i/16)
+			draw_sprite_ext(sprTitle,0,rw>>1,scale+rh*0.1,scale,scale,0,col,1);
+		}
+	}
+	
 	for (var i = 0; i < bc; i++)
 	{
 		var _bl = 0; 

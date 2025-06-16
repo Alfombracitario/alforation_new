@@ -167,27 +167,27 @@ if (room == game)
 
     notday = true;
 
-    if (_time < 140) // Día
+    if (_time < 150) // Día
     {
         fog_color = $FFB885; // Azul claro (día)
         sky_color = $DF5F2F;
         notday = false;
         timecolor = c_white;
     }
-    else if (_time < 160) // Atardecer
+    else if (_time < 170) // Atardecer
     {
-        var amt = (_time - 140) * 0.05;
+        var amt = (_time - 150) * 0.05;
 
-        fog_color = merge_color($FFB885, $0A9FfF, amt); // Azul claro → Naranja
-        timecolor = merge_color($FFFFFF, $A0A0FF, amt); // Blanco → Rosado claro
+        fog_color = merge_color($FFB885, $0A7FfF, amt); // Azul claro → Naranja
+        timecolor = merge_color($FFFFFF, $99A0FF, amt); // Blanco → Rosado claro
         sky_color = merge_color($DF5F2F,$3f054a, amt);
     }
-    else if (_time < 180) // Anochecer
+    else if (_time < 190) // Anochecer
     {
-        var amt = (_time - 160) * 0.05;
+        var amt = (_time - 170) * 0.05;
 
-        fog_color = merge_color($0A9FFF, $120406, amt); // Naranja → Negro azulado
-        timecolor = merge_color($A0A0Ff, $7a6a6a, amt); // Rosado claro → Gris azulado
+        fog_color = merge_color($0A7FFF, $120406, amt); // Naranja → Negro azulado
+        timecolor = merge_color($99A0Ff, $7a6a6a, amt); // Rosado claro → Gris azulado
         sky_color = merge_color($3f054a,$000000, amt);
     }
     else if (_time < 340) // Noche

@@ -1,4 +1,5 @@
 draw_set_halign(fa_left);
+//shaders
 if(global.hd)
 {
 	_t  = shader_get_uniform(sBillboard, "_t");
@@ -21,6 +22,8 @@ else
 	fog_settings  = shader_get_uniform(sBillboard_fast, "fog_settings");
 	fogcol = shader_get_uniform(sBillboard_fast,"fog_color");
 }
+gamma = shader_get_uniform(sGamma,"u_gamma");
+
 factordiv = 1;
 global.players = 1;
 
@@ -727,4 +730,5 @@ if(global.hd)
 		}
 	}
 	vertex_end(v);
+	vertex_freeze(v)
 }
