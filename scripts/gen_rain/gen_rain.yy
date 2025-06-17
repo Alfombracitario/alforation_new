@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"gen_rain",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"gen_rain",
+  "parent":{
+    "name":"world",
+    "path":"folders/Scripts/3D/world.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

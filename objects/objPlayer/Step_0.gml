@@ -296,7 +296,8 @@ if(gamepad_is_connected(0))
 	
 	gamepad_set_vibration(0,hurt_tic,hurt_tic);
 	if gamepad_button_check_pressed(0, gp_select) display_info = !display_info;
-	if Pface_x invopen = true; invmousex = gw>>1; invmousey = gh>>1;
+	if Pface_x open_inv(); invmode = 1; invmousex = gw>>1; invmousey = gh>>1;
+	if Pface_y open_inv(); invmode = 0; invmousex = gw>>1; invmousey = gh>>1;
 	if Pshoulder_rb event_user(15);
 	if Pshoulder_lb event_user(14);
 }

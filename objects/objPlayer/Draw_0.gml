@@ -8,7 +8,7 @@ with(objSun)
 //ahora el terreno
 if(room == game)
 {
-	if(global.hd)
+	if(global.clouds)
 	{
 	//nubes
 	cloudtime += global.fpsmode;
@@ -27,8 +27,10 @@ if(room == game)
 	var b = color_get_blue(cfc)/255;
 	shader_set_uniform_f(_timecol,r,g,b);
 	shader_set_uniform_f(_cfogset,fog_depth-fog_density,fog_depth);
-	vertex_submit(v,pr_trianglelist,3);
-	
+	vertex_submit(vbC,pr_trianglelist,3);
+	}
+	if(global.hd)
+	{
 	if(global.shadows)//a la mierda el rendimiento
 		{
 			gpu_set_ztestenable(true);//actvar el zbuffer
@@ -74,6 +76,7 @@ if(room == game)
 	{
 		event_perform(ev_draw,0);
 	}
+	
 	shader_reset();
 }
 //ahora se dibuja el resto por si solo

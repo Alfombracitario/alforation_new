@@ -1,4 +1,10 @@
 draw_set_halign(fa_left);
+
+global.shadows = false;
+global.clouds = true;
+global.gamma = 0.5
+gen_rain();
+
 //shaders
 if(global.hd)
 {
@@ -7,14 +13,6 @@ if(global.hd)
 	fogcol = shader_get_uniform(sBillboard,"fog_color");
 	_move = shader_get_uniform(sBillboard,"_move");
 	movetime = 0;
-	
-	//nubes
-	_cltime = shader_get_uniform(sClouds,"time");
-	_cfogcol = shader_get_uniform(sClouds,"fog_color");
-	_cfogset = shader_get_uniform(sClouds, "fog_settings");
-	_cplayerpos = shader_get_uniform(sClouds, "p_pos");
-	_timecol = shader_get_uniform(sClouds, "t_color");
-	cloudtime = 0;
 }
 else
 {
@@ -22,12 +20,22 @@ else
 	fog_settings  = shader_get_uniform(sBillboard_fast, "fog_settings");
 	fogcol = shader_get_uniform(sBillboard_fast,"fog_color");
 }
+if(global.clouds)
+{
+	//nubes
+	gen_clouds();
+	_cltime = shader_get_uniform(sClouds,"time");
+	_cfogcol = shader_get_uniform(sClouds,"fog_color");
+	_cfogset = shader_get_uniform(sClouds, "fog_settings");
+	_cplayerpos = shader_get_uniform(sClouds, "p_pos");
+	_timecol = shader_get_uniform(sClouds, "t_color");
+	cloudtime = 0;
+}
 gamma = shader_get_uniform(sGamma,"u_gamma");
 
 factordiv = 1;
 global.players = 1;
 
-global.shadows = false;
 if(global.shadows)
 {
 	shadows_surface = surface_create(1024,1024);
@@ -681,54 +689,3 @@ for(var i = 0; i<16; i++)
 		[I_COAL,1]
 	])
 	#endregion
-	
-	
-
-if(global.hd)
-{
-//clouds
-	v = vertex_create_buffer();
-	vertex_begin(v,global.f);
-
-	var fuvs = get_texture_coords_sprite(sprClouds,0);
-	var _size = CHUNK_SIZE<<4;
-	var _cz = -512;
-	
-	var _x = 0;
-	var _y = 0;
-	
-	for(i = -1; i<1; i++)
-	{
-		for(j = -1; j<1; j++)
-		{
-			_cz = -512;
-			repeat(16)
-			{
-				_x = i*_size;
-				_y = j*_size;
-				_cz--;
-				vertex_position_3d(v, _x + _size, _y + _size, _cz);
-				vertex_color(v, c_white, 1);
-				vertex_texcoord(v, fuvs.x1, fuvs.y1);
-				vertex_position_3d(v, _x, _y, _cz);
-				vertex_color(v, c_white, 1);
-				vertex_texcoord(v, fuvs.x2, fuvs.y2);
-				vertex_position_3d(v, _x, _y + _size, _cz);
-				vertex_color(v, c_white, 1);
-				vertex_texcoord(v, fuvs.x2, fuvs.y1);
-
-				vertex_position_3d(v, _x + _size, _y, _cz);
-				vertex_color(v, c_white, 1);
-				vertex_texcoord(v, fuvs.x1, fuvs.y2);
-				vertex_position_3d(v, _x, _y, _cz);
-				vertex_color(v, c_white, 1);
-				vertex_texcoord(v, fuvs.x2, fuvs.y2);
-				vertex_position_3d(v, _x + _size, _y + _size, _cz);
-				vertex_color(v, c_white, 1);
-				vertex_texcoord(v, fuvs.x1, fuvs.y1);
-			}
-		}
-	}
-	vertex_end(v);
-	vertex_freeze(v)
-}

@@ -5,7 +5,7 @@ gpu_set_ztestenable(false);
 
 //shader de gamma para simular el efecto nostálgico de minecraft legacy
 shader_set(sGamma);
-shader_set_uniform_f(gamma,0.5);
+shader_set_uniform_f(gamma,global.gamma);
 
 
 if(global.hd)
