@@ -27,7 +27,7 @@ if(room == game)
 	var b = color_get_blue(cfc)/255;
 	shader_set_uniform_f(_timecol,r,g,b);
 	shader_set_uniform_f(_cfogset,fog_depth-fog_density,fog_depth);
-	vertex_submit(vbC,pr_trianglelist,3);
+	vertex_submit(vbC,pr_trianglelist,3);//clouds
 	}
 	if(global.hd)
 	{
@@ -75,6 +75,16 @@ if(room == game)
 	with(objChunk)
 	{
 		event_perform(ev_draw,0);
+	}
+
+	if(false)//si llueve
+	{
+		gpu_set_ztestenable(false);
+		shader_set(sClouds);
+		shader_set_uniform_f(_cplayerpos,x,y);
+		shader_set_uniform_f(_cltime,-cloudtime<<7);
+		vertex_submit(vbR,pr_trianglelist,4);//rain
+		gpu_set_ztestenable(true);
 	}
 	
 	shader_reset();

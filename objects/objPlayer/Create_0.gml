@@ -3,6 +3,7 @@ draw_set_halign(fa_left);
 global.shadows = false;
 global.clouds = true;
 global.gamma = 0.5
+
 gen_rain();
 
 //shaders

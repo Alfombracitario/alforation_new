@@ -2,7 +2,18 @@
 gpu_set_ztestenable(false);
 //dibujar la pantalla
 
-
+//test
+/*
+var _tms = 360;
+var _szs = 16;
+var _offst = 64;
+for(var i = 1; i < _tms; i++)
+{
+	var posx = dsin(i);
+	var posy = dcos(i);
+	draw_sprite(sprPixel,0,_offst+(posx*_szs),_offst+(posy*_szs));
+}
+*/
 //shader de gamma para simular el efecto nostálgico de minecraft legacy
 shader_set(sGamma);
 shader_set_uniform_f(gamma,global.gamma);
