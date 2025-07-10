@@ -1,5 +1,5 @@
 //Music
-var music = irandom(8)
+var music = irandom(9);
 
 switch(music)
 {
@@ -37,6 +37,10 @@ switch(music)
     
     case 8:
 		audio_play_sound(musOut,0,0,global.musvol);
+	break;
+	
+	case 9:
+		audio_play_sound(musMistery,0,0,global.musvol);
 	break;
 }
 

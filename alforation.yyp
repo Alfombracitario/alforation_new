@@ -137,6 +137,7 @@
     {"id":{"name":"sGrayscale","path":"shaders/sGrayscale/sGrayscale.yy",},},
     {"id":{"name":"musDungeonA","path":"sounds/musDungeonA/musDungeonA.yy",},},
     {"id":{"name":"musInfluenza","path":"sounds/musInfluenza/musInfluenza.yy",},},
+    {"id":{"name":"musMistery","path":"sounds/musMistery/musMistery.yy",},},
     {"id":{"name":"musNight","path":"sounds/musNight/musNight.yy",},},
     {"id":{"name":"musNight2","path":"sounds/musNight2/musNight2.yy",},},
     {"id":{"name":"musOut","path":"sounds/musOut/musOut.yy",},},

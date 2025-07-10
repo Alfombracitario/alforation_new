@@ -20,3 +20,5 @@ bc = 3; //button count
 button[0] = [0,16,2,0.5,0,"Play"];
 button[1] = [1,16,2,0.5,24,"Settings"];
 button[2] = [2,16,2,0.5,48,"Exit game"];
+
+audio_debug(true);
