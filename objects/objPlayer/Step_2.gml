@@ -39,4 +39,5 @@ if(wprev != w_width || hprev != w_height) {
 }
 var _aspect = gw/gh;
 if _aspect == 0 _aspect = 1;
-camera_set_proj_mat(view_camera[0],matrix_build_projection_perspective_fov(60+fov_mod,_aspect,1,fog_depth));
+var mat = matrix_build_projection_perspective_fov(60+fov_mod,_aspect,1,fog_depth);
+camera_set_proj_mat(view_camera[0],mat);

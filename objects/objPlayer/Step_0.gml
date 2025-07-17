@@ -585,7 +585,6 @@ itemangle*=0.85;
 //Update the camera
 mat = matrix_build_lookat(xfrom, yfrom,z+_z, xto, yto,z+_z + zto, 0, 0, 1);
 camera_set_view_mat(view_camera[0], mat);
-
 //3D audio
 audio_listener_position(x,y,z);
 audio_listener_orientation(xto, yto, z+_z, 0, 0, 1);

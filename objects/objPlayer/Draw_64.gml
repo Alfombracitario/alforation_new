@@ -6,7 +6,7 @@ gpu_set_ztestenable(false);
 /*
 var _tms = 360;
 var _szs = 16;
-var _offst = 64;
+var _offst = 128;
 for(var i = 1; i < _tms; i++)
 {
 	var posx = dsin(i);

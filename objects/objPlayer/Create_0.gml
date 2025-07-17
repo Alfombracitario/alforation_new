@@ -1,4 +1,6 @@
 draw_set_halign(fa_left);
+w_width = window_get_width();
+w_height = window_get_height();
 
 global.shadows = false;
 global.clouds = global.hd;
@@ -42,8 +44,6 @@ if(global.shadows)
 	shadows_surface = surface_create(1024,1024);
 }
 
-w_width = window_get_width();
-w_height = window_get_height();
 image_alpha = 0.5;
 view_enabled = true;
 view_visible[0] = true;

@@ -1,10 +1,11 @@
 //inicio del dibujo
 //primero las cosas sin zbuffer
+
+//dibujar las cosas con el bloom
 with(objSun)
 {
 	event_perform(ev_draw,0);
 }
-
 //ahora el terreno
 if(room == game)
 {
