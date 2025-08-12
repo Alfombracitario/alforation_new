@@ -1,19 +1,19 @@
 //TEMPORAL
 if(keyboard_check(vk_up))
 {
-	y-=CHUNK_SIZE;
+	y-=1;
 }
 if(keyboard_check(vk_right))
 {
-	x+=CHUNK_SIZE;
+	x+=1;
 }
 if(keyboard_check(vk_left))
 {
-	x-=CHUNK_SIZE;
+	x-=1;
 }
 if(keyboard_check(vk_down))
 {
-	y+=CHUNK_SIZE;
+	y+=1;
 }
 
 w_width = window_get_width();

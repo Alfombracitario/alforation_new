@@ -287,10 +287,12 @@ for(var i = 0; i<16; i++)
 	//datos de los items
 
 	//spear,sword,pic,hoe,axe
+
 	w_coold = [15,20,12,4,45];
 	w_damincrmt = [3,5,2,1,7];
 	w_damage = [7,10,5,2,15];
 	w_dur = [32,64,210,270,300,400,460,700,850,1000];
+
 	
 	//     Tile name		Id
 	#macro T_TREE			0
@@ -690,3 +692,6 @@ for(var i = 0; i<16; i++)
 		[I_COAL,1]
 	])
 	#endregion
+	
+//me quiero matar en directo
+//Aquí añadiré lo de los items

@@ -1,5 +1,7 @@
 application_surface_draw_enable(true);
 
+//textos
+global.lang = "es";
 _alpha = -0.5;
 screen = 0;
 intromode = 0;
@@ -18,6 +20,7 @@ presel = -1;
 
 bc = 3; //button count
 //			event,xscale,yscale,x,y,string
-button[0] = [0,16,2,0.5,0,"Play"];
+
+button[0] = [0,16,2,0.5,0,"play"];
 button[1] = [1,16,2,0.5,24,"Settings"];
 button[2] = [2,16,2,0.5,48,"Exit game"];

@@ -195,6 +195,36 @@ function load_chunk_ini(cx, cy) {
 						add_obj(1,T_STONE_COPPER);
 					}
 				}
+				else if(temperature >= 60 && temperature <= 100 && humidity >= 160 && humidity <= 240)//álamos
+				{
+					set_tree(sprPoplartree);
+					image_blend = get_color_colormap(temperature,humidity)
+					
+					times = irandom(12);
+					add_obj(times,T_TREE);
+				
+					times = irandom(19);
+					add_obj(times,T_GRASS);
+					
+					times = irandom(10);
+					add_obj(times,T_TALLGRASS);
+				
+					times = irandom(5);
+					add_obj(times,T_STONE);
+
+					times = irandom(2);
+					add_obj(times,T_MUSHROOM1);
+					
+					if(irandom(5) == 0)
+					{
+						add_obj(1,T_STONE_TIN);
+					}
+					
+					if(irandom(15) == 0)
+					{
+						add_obj(1,T_STONE_COPPER);
+					}
+				}
 				else if(temperature < 40 && humidity > 180)//corrupción
 				{
 					set_tree(sprDeadtree);

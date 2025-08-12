@@ -52,3 +52,55 @@ draw_set_halign(fa_center);
 
 //macros
 #macro CHUNK_SIZE 256
+
+
+global.text = {
+	title : {
+		en :{
+			play : "Play",
+			settings : "Settings",
+			exitGame : "Exit Game",
+			loadWorld : "Load world",
+			createWorld : "Create new world",
+			done : "Done",
+			renderDistance : "Render distance: ",
+			screenResolution : "Screen resolution: ",
+			uiSize : "Ui size: ",
+			fpsRate : "Fps rate: ",
+			graphicsQuality : "Graphics quality: ",
+			worldName : "World name: ",
+			seed : "Seed: "
+		},
+		es : {
+			play : "Jugar",
+			settings : "Ajustes",
+			exitGame : "Salir del juego",
+			loadWorld : "Cargar partida",
+			createWorld : "Nuevo archivo",
+			done : "Listo",
+			renderDistance : "Distancia de render: ",
+			screenResolution : "Resolución: ",
+			uiSize : "Tamaño de interfaz: ",
+			fpsRate : "FPS Máximos: ",
+			graphicsQuality : "Calidad visual: ",
+			worldName : "Nombre del mundo: ",
+			seed : "Semilla: "
+		}
+	},
+	inventory : {
+		en : {
+		inventory : "Inventory",
+		crafting : "Crafting",
+		character : "Character",
+		def : "Def",
+		sp : "Sp",
+		},
+		es : {
+		inventory : "Inventario",
+		crafting : "Creación",
+		character : "Personaje",
+		def : "Def",
+		sp : "Sp",
+		}
+	}
+}
